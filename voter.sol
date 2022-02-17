@@ -1,17 +1,13 @@
 pragma solidity >=0.4.9 <0.9.0;
 pragma experimental ABIEncoderV2;
 contract Voter {
-    address admin;
-    constructor(address _Admin) public {
-        admin =_Admin;
-    }
 
     uint256 VoterCounter=0;
-   
     
-    struct Voters  {
+    
+    struct Voters {
         string VoterName;
-        address VoterAdress;
+        address VoterAddress;
         string VoterGender;
         uint  age;
         uint256 Citizennumber;
@@ -33,7 +29,7 @@ contract Voter {
                break;
            }
        }
-       require(newVoter == true ,"Candidate is already registered");
+       require(newVoter == true ,"voter is already registered");
        
        voterdet[VoterCounter]= Voters(_voterName,_voterAddress,_voterGender,_age,_citizenshipNumber,false);
        VoterCounter++;
