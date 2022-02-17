@@ -34,5 +34,8 @@ contract Voter {
        voterdet[VoterCounter]= Voters(_voterName,_voterAddress,_voterGender,_age,_citizenshipNumber,false);
        VoterCounter++;
     }
+    function getVoter(uint256 id) public view returns(Voters memory){
+        return voterdet[id];
+    }
 
 }
