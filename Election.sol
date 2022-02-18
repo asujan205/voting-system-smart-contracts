@@ -99,6 +99,23 @@ contract Election{
          
 
      }
+     function isStarted() public view returns(bool){
+         bool status= false;
+         if(election_Status == 1)
+         {
+             status=true;
+         }
+          return status;
+     }
+     function isStopped() public view returns(bool)
+     {
+        bool isstopped=false;
+         if(election_Status==0)
+         {
+             isstopped=true;
+         }
+         return isstopped;
+     }
      function startElection() public {
          require(msg.sender==admin,"only admin can start the elcetion");
          election_Status=1;
@@ -108,6 +125,23 @@ contract Election{
          require(msg.sender == admin ,"only admin can stop the election");
          election_Status=0;
      }
+     uint public winnerindex;
+function CalculateWinner() private{
+    uint winingVoteCount =0;
+    for(uint  i=0;i<CandidateCount;i++)
+    {
+        if(candidate[i].votecount>winingVoteCount)
+        {
+            winingVoteCount=candidate[i].votecount;
+            winnerindex=i;
+        }
 
+    }
+
+}
+function getWinerName() public view returns(string memory,string memory,uint256){
+    return(candidate[winnerindex].CandidateName,candidate[winnerindex].CandidateParty,candidate[winnerindex].votecount);
+
+}
 
 }
